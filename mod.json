@@ -1,0 +1,16 @@
+{
+    "Name": "Timeline",
+    "DLL": "Timeline.dll",
+
+    "Version": "1.0.0",
+    "Description": "Grounds BattleTech in a particular time period in universe.",
+    "Author": "mpstark",
+    "Website": "www.github.com/BattleTechModders/Timeline",
+
+    "Settings": {
+        "DateFormatString": "{0:yyyy MMMM d}{1}",
+        "StartingYear": 3025,
+        "StartingMonth": 1,
+        "StartingDay": 1
+    }
+}
