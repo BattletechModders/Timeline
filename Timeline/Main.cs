@@ -44,12 +44,7 @@ namespace Timeline
         {
             var startDateTag = GetStartingDateTag(simGame);
             if (startDateTag != null)
-            {
-                // reset popped up event so that we can trigger on another save
-                poppedUpEvent = false;
-
                 return ParseTimelineTag(startDateTag);
-            }
 
             if (setTimelineEvent == null)
             {
