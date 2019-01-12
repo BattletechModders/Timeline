@@ -8,7 +8,7 @@ namespace Timeline
     {
         public static void Postfix(SimGameState __instance)
         {
-            Main.SetDay(__instance.DaysPassed);
+            Main.SetDay(__instance);
         }
     }
 }

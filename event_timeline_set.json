@@ -1,0 +1,135 @@
+{
+    "Description": {
+        "Id": "event_timeline_set",
+        "Name": "Set Timeline",
+        "Details": "Set Timeline",
+        "Icon": "uixTxrSpot_DailyBriefing.png"
+    },
+    "Scope": "Company",
+    "Weight": 0,
+    "Requirements": {
+        "Scope": "Company",
+        "RequirementTags": {
+            "items": null,
+            "tagSetSourceFile": ""
+        },
+        "ExclusionTags": {
+            "items": null,
+            "tagSetSourceFile": ""
+        },
+        "RequirementComparisons": []
+    },
+    "AdditionalRequirements": [],
+    "AdditionalObjects": [],
+    "Options": [
+        {
+            "Description": {
+                "Id": "timeline_3025",
+                "Name": "Set the timeline to 3025",
+                "Details": "3025",
+                "Icon": ""
+            },
+            "RequirementList": [],
+            "ResultSets": [
+                {
+                    "Description": {
+                        "Id": "timeline_3025",
+                        "Name": "3025",
+                        "Details": "Result 3025",
+                        "Icon": ""
+                    },
+                    "Weight": 100,
+                    "Results": [
+                        {
+                            "Scope": "Company",
+                            "Requirements": null,
+                            "AddedTags": {
+                                "items": [
+                                    "start_timeline_3025_01_01"
+                                ],
+                                "tagSetSourceFile": ""
+                            },
+                            "RemovedTags": {
+                                "items": null,
+                                "tagSetSourceFile": ""
+                            },
+                            "Stats": null,
+                            "Actions": null,
+                            "ForceEvents": null,
+                            "TemporaryResult": false,
+                            "ResultDuration": 0
+                        }
+                    ]
+                }
+            ],
+            "Requirements": {
+                "Scope": "Company",
+                "RequirementTags": {
+                    "items": null,
+                    "tagSetSourceFile": ""
+                },
+                "ExclusionTags": {
+                    "items": null,
+                    "tagSetSourceFile": ""
+                },
+                "RequirementComparisons": []
+            }
+        },
+        {
+            "Description": {
+                "Id": "timeline_3035",
+                "Name": "Set the timeline to 3035",
+                "Details": "3035",
+                "Icon": ""
+            },
+            "RequirementList": [],
+            "ResultSets": [
+                {
+                    "Description": {
+                        "Id": "timeline_3035",
+                        "Name": "3035",
+                        "Details": "Result 3035",
+                        "Icon": ""
+                    },
+                    "Weight": 100,
+                    "Results": [
+                        {
+                            "Scope": "Company",
+                            "Requirements": null,
+                            "AddedTags": {
+                                "items": [
+                                    "start_timeline_3035_01_01"
+                                ],
+                                "tagSetSourceFile": ""
+                            },
+                            "RemovedTags": {
+                                "items": null,
+                                "tagSetSourceFile": ""
+                            },
+                            "Stats": null,
+                            "Actions": null,
+                            "ForceEvents": null,
+                            "TemporaryResult": false,
+                            "ResultDuration": 0
+                        }
+                    ]
+                }
+            ],
+            "Requirements": {
+                "Scope": "Company",
+                "RequirementTags": {
+                    "items": null,
+                    "tagSetSourceFile": ""
+                },
+                "ExclusionTags": {
+                    "items": null,
+                    "tagSetSourceFile": ""
+                },
+                "RequirementComparisons": []
+            }
+        }
+    ],
+    "PublishState": "PUBLISHED",
+    "ValidationState": "UNTESTED",
+    "EventType": "UNSELECTABLE"
+}

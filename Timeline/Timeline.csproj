@@ -64,4 +64,7 @@
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>xcopy $(TargetPath) "D:\Games\GOG Galaxy\Games\BATTLETECH\Mods\Timeline" /Y</PostBuildEvent>
+  </PropertyGroup>
 </Project>

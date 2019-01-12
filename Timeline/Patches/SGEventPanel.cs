@@ -10,7 +10,7 @@ namespace Timeline
         public static void Postfix(SGEventPanel __instance)
         {
             var eventTime = Traverse.Create(__instance).Field("eventTime").GetValue<TextMeshProUGUI>();
-            eventTime.text = Main.GetTimelineDate(__instance.Sim.DaysPassed);
+            eventTime.text = Main.GetTimelineDate(__instance.Sim);
         }
     }
 }
