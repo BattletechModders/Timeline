@@ -1,8 +1,8 @@
 {
     "Description": {
         "Id": "event_timeline_set",
-        "Name": "Set Timeline",
-        "Details": "Set Timeline",
+        "Name": "Select Timeline",
+        "Details": "Please select a timeline to base your game's starting day on.",
         "Icon": "uixTxrSpot_DailyBriefing.png"
     },
     "Scope": "Company",
