@@ -9,19 +9,15 @@ namespace Timeline
 
         public static ModSettings ReadSettings(string json)
         {
-            ModSettings settings;
-
             try
             {
-                settings = JsonConvert.DeserializeObject<ModSettings>(json);
+                return JsonConvert.DeserializeObject<ModSettings>(json);
             }
             catch (Exception e)
             {
                 Main.HBSLog.Log($"Reading settings failed: {e.Message}");
-                settings = new ModSettings();
+                return new ModSettings();
             }
-
-            return settings;
         }
     }
 }
