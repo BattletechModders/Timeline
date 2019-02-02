@@ -1,7 +1,10 @@
 ﻿using BattleTech;
 using Harmony;
 
-namespace Timeline
+// ReSharper disable UnusedMember.Global
+// ReSharper disable InconsistentNaming
+
+namespace Timeline.Patches
 {
     [HarmonyPatch(typeof(SimGameState), "OnDayPassed")]
     public static class SimGameState_OnDayPassed_Patch
@@ -15,18 +18,18 @@ namespace Timeline
     [HarmonyPatch(typeof(SimGameState), "Init")]
     public static class SimGameState_Init_Patch
     {
-        public static void Postfix(SimGameState __instance)
+        public static void Postfix()
         {
-            Main.poppedUpEvent = false;
+            Main.PoppedUpEvent = false;
         }
     }
 
     [HarmonyPatch(typeof(SimGameState), "InitFromSave")]
     public static class SimGameState_InitFromSave_Patch
     {
-        public static void Postfix(SimGameState __instance)
+        public static void Postfix()
         {
-            Main.poppedUpEvent = false;
+            Main.PoppedUpEvent = false;
         }
     }
 }

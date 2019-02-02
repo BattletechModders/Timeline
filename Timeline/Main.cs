@@ -3,9 +3,9 @@ using Harmony;
 using HBS.Logging;
 using System;
 using System.Linq;
-using System.Globalization;
 using System.Reflection;
 using System.IO;
+using JetBrains.Annotations;
 
 namespace Timeline
 {
@@ -13,11 +13,12 @@ namespace Timeline
     {
         internal static ILog HBSLog;
         internal static ModSettings Settings;
-        internal static SimGameEventDef setTimelineEvent;
-        internal static bool poppedUpEvent = false;
+        internal static SimGameEventDef SetTimelineEvent;
+        internal static bool PoppedUpEvent;
 
 
         // ENTRY POINT
+        [UsedImplicitly]
         public static void Init(string modDir, string modSettings)
         {
             var harmony = HarmonyInstance.Create("io.github.mpstark.Timeline");
@@ -29,8 +30,8 @@ namespace Timeline
             var eventPath = Path.Combine(modDir, "event_timeline_set.json");
             if (File.Exists(eventPath))
             {
-                setTimelineEvent = new SimGameEventDef();
-                setTimelineEvent.FromJSON(File.ReadAllText(eventPath));
+                SetTimelineEvent = new SimGameEventDef();
+                SetTimelineEvent.FromJSON(File.ReadAllText(eventPath));
             }
             else
             {
@@ -46,11 +47,14 @@ namespace Timeline
             if (startDateTag != null)
                 return ParseTimelineTag(startDateTag);
 
-            if (setTimelineEvent == null)
+            if (SetTimelineEvent == null)
             {
-                var startDate = new DateTime(Settings.StartingYear, Settings.StartingMonth, Settings.StartingDay);
+                var startDate = simGame.IsCareerMode()
+                    ? simGame.Constants.CareerMode.CampaignStartDate
+                    : simGame.Constants.Story.CampaignStartDate;
+
                 SetStartingDateTag(simGame, startDate);
-                HBSLog.LogWarning($"DEFAULTED TO 3025 BECAUSE EVENT DIDN'T EXIST!");
+                HBSLog.LogWarning($"Event didn't exist, using {startDate}");
                 return startDate;
             }
 
@@ -83,10 +87,18 @@ namespace Timeline
 
         internal static DateTime? GetSimGameDate(SimGameState simGame)
         {
-            return GetStartingDate(simGame)?.AddDays(simGame.DaysPassed);
+            var startingDate = GetStartingDate(simGame);
+
+            if (startingDate != null && startingDate != simGame.CampaignStartDate)
+            {
+                HBSLog.Log("Setting SimGameState.campaignStartDate");
+                Traverse.Create(simGame).Field("campaignStartDate").SetValue(startingDate);
+            }
+
+            return startingDate?.AddDays(simGame.DaysPassed);
         }
 
-        internal static string GetTimelineDate(SimGameState simGame)
+        internal static string GetTimelineDateString(SimGameState simGame)
         {
             var date = GetSimGameDate(simGame);
 
@@ -110,19 +122,9 @@ namespace Timeline
             simGame.CompanyTags.Add(startDateTag);
         }
 
-        internal static string GetYearDateTag(DateTime date)
-        {
-            return $"timeline_{date.ToString("yyyy")}";
-        }
-
-        internal static string GetMonthDateTag(DateTime date)
-        {
-            return $"timeline_{date.ToString("yyyy_MM")}";
-        }
-
         internal static string GetDayDateTag(DateTime date)
         {
-            return $"timeline_{date.ToString("yyyy_MM_dd")}";
+            return $"timeline_{date:yyyy_MM_dd}";
         }
 
         internal static DateTime ParseTimelineTag(string tag)
@@ -132,40 +134,39 @@ namespace Timeline
 
             var splitTag = tag.Split('_');
 
-            var year = splitTag[1];
-            var month = "Jan";
+            var year = int.Parse(splitTag[1]);
+            var month = 1;
             var day = 1;
 
             if (splitTag.Length >= 3)
-                month = splitTag[2];
+                month = int.Parse(splitTag[2]);
 
             if (splitTag.Length >= 4)
                 day = int.Parse(splitTag[3]);
 
-            return DateTime.Parse($"{month}/{day}/{year}", CultureInfo.GetCultureInfo("en-US").DateTimeFormat);
+            return new DateTime(year, month, day);
         }
 
 
         // MEAT
         internal static void SetDay(SimGameState simGame)
         {
-            var date = GetSimGameDate(simGame);
-
             // TODO: DO SOMETHING WITH TAGS AND STUFF
+            //var date = GetSimGameDate(simGame);
         }
 
         internal static bool ForceSetTimelineEvent(SimGameState simGame)
         {
             // only allow popup while time is actively moving, and you haven't popped up another event
-            if (setTimelineEvent == null || !simGame.TimeMoving || poppedUpEvent)
+            if (SetTimelineEvent == null || !simGame.TimeMoving || PoppedUpEvent)
                 return false;
 
             HBSLog.Log($"Popping up event.");
-            poppedUpEvent = true;
+            PoppedUpEvent = true;
 
             var eventTracker = new SimGameEventTracker();
-            eventTracker.Init(new EventScope[] { EventScope.Company }, 0, 0, SimGameEventDef.SimEventType.NORMAL, simGame);
-            simGame.InterruptQueue.QueueEventPopup(setTimelineEvent, EventScope.Company, eventTracker);
+            eventTracker.Init(new[] { EventScope.Company }, 0, 0, SimGameEventDef.SimEventType.NORMAL, simGame);
+            simGame.InterruptQueue.QueueEventPopup(SetTimelineEvent, EventScope.Company, eventTracker);
             return true;
         }
     }
