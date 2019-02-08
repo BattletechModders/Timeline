@@ -5,7 +5,6 @@ using System;
 using System.Linq;
 using System.Reflection;
 using System.IO;
-using JetBrains.Annotations;
 
 namespace Timeline
 {
@@ -18,7 +17,6 @@ namespace Timeline
 
 
         // ENTRY POINT
-        [UsedImplicitly]
         public static void Init(string modDir, string modSettings)
         {
             var harmony = HarmonyInstance.Create("io.github.mpstark.Timeline");
