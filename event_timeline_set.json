@@ -3,7 +3,7 @@
         "Id": "event_timeline_set",
         "Name": "Select Timeline",
         "Details": "Please select a timeline to base your game's starting day on.",
-        "Icon": "uixTxrSpot_DailyBriefing.png"
+        "Icon": "uixTxrSpot_ComputerScreen.png"
     },
     "Scope": "Company",
     "Weight": 0,
