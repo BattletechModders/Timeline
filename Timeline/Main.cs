@@ -101,7 +101,7 @@ namespace Timeline
             var date = GetSimGameDate(simGame);
 
             if (date == null)
-                return "- Event Popup -";
+                return "- Date Not Set -";
 
             return string.Format(Settings.DateFormatString, date, GetDaySuffix(((DateTime)date).Day));
         }
