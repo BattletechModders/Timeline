@@ -47,9 +47,11 @@ namespace Timeline
 
             if (SetTimelineEvent == null)
             {
-                var startDate = simGame.IsCareerMode()
+                var startDateString = simGame.IsCareerMode()
                     ? simGame.Constants.CareerMode.CampaignStartDate
                     : simGame.Constants.Story.CampaignStartDate;
+
+                var startDate = DateTime.Parse(startDateString);
 
                 SetStartingDateTag(simGame, startDate);
                 HBSLog.LogWarning($"Event didn't exist, using {startDate}");
@@ -87,11 +89,8 @@ namespace Timeline
         {
             var startingDate = GetStartingDate(simGame);
 
-            if (startingDate != null && startingDate != simGame.CampaignStartDate)
-            {
-                HBSLog.Log("Setting SimGameState.campaignStartDate");
-                Traverse.Create(simGame).Field("campaignStartDate").SetValue(startingDate);
-            }
+            if (startingDate != null && startingDate != simGame.GetCampaignStartDate())
+                simGame.SetCampaignStartDate((DateTime) startingDate);
 
             return startingDate?.AddDays(simGame.DaysPassed);
         }
