@@ -39,6 +39,7 @@ namespace Timeline.Features
 
             var simGame = UnityGameInstance.BattleTechGame.Simulation;
             simGame.Constants.Time.DayElapseTimeNormal = _oldDayElapseTimeNormal;
+            simGame.SetTimeMoving(false);
         }
 
         public static void OnDayAdvance()
