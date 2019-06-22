@@ -6,6 +6,7 @@ namespace Timeline
     internal class ModSettings
     {
         public string DateFormatString = "{0:yyyy MMMM d}{1}";
+        public float AdvanceToTaskTime = 0.25f;
 
         public static ModSettings ReadSettings(string json)
         {

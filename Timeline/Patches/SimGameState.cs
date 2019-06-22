@@ -3,6 +3,7 @@ using System.Linq;
 using BattleTech;
 using Harmony;
 using HBS.Collections;
+using Timeline.Features;
 
 // ReSharper disable UnusedMember.Global
 // ReSharper disable InconsistentNaming
@@ -15,6 +16,7 @@ namespace Timeline.Patches
         public static void Postfix(SimGameState __instance)
         {
             Main.SetDay(__instance);
+            AdvanceToTask.OnDayAdvance();
         }
     }
 

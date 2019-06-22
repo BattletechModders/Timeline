@@ -51,10 +51,12 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Features\AdvanceToTask.cs" />
     <Compile Include="Main.cs" />
     <Compile Include="Patches\SGEventPanel.cs" />
     <Compile Include="Patches\SGTimePlayPause.cs" />
     <Compile Include="Patches\SimGameState.cs" />
+    <Compile Include="Patches\TaskTimelineWidget.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ModSettings.cs" />
   </ItemGroup>
