@@ -2,7 +2,7 @@
     "Name": "Timeline",
     "DLL": "Timeline.dll",
 
-    "Version": "1.1.0",
+    "Version": "1.2.0",
     "Description": "Grounds BattleTech in a particular time period in universe.",
     "Author": "mpstark",
     "Website": "www.github.com/BattletechModders/Timeline",

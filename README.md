@@ -5,6 +5,9 @@ BattleTech mod that helps ground the campaign into the timeline of the universe.
 * Allows for limiting mechs to an appearance date by using `MinAppearanceDate` in the MechDef
   * `"MinAppearanceDate" : "3025-06-28T00:00:00Z",` is used by the Hatchetman in vanilla 1.4
 * Displays the date in the event popup and in the game timeline
+* Allows for any RequirementDef to contain tags of format `timeline_{year}_{month}_{day}` or `timeline_{year}_{month}` or `timeline_{year}`
+  * RequiredTag date has passed
+  * ExcludedTag date has not passed
 
 ## Requires
 
