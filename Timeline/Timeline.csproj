@@ -52,6 +52,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Features\AdvanceToTask.cs" />
+    <Compile Include="Features\CurrentDate.cs" />
+    <Compile Include="Features\RequirementDefDates.cs" />
     <Compile Include="Main.cs" />
     <Compile Include="Patches\SGEventPanel.cs" />
     <Compile Include="Patches\SGTimePlayPause.cs" />
@@ -59,6 +61,7 @@
     <Compile Include="Patches\TaskTimelineWidget.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ModSettings.cs" />
+    <Compile Include="Util.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

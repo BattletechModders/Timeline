@@ -16,7 +16,7 @@ namespace Timeline.Patches
         {
             var timePassedText = Traverse.Create(__instance).Field("timePassedText").GetValue<TextMeshProUGUI>();
             var simGame = Traverse.Create(__instance).Field("simState").GetValue<SimGameState>();
-            timePassedText.text = Main.GetTimelineDateString(simGame);
+            timePassedText.text = CurrentDate.GetTimelineDateString(simGame);
         }
     }
 
