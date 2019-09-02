@@ -36,12 +36,8 @@ namespace Timeline.Features
             if (!simGame.TimeMoving || _poppedUpEvent)
                 return;
 
-            Main.HBSLog.Log($"Popping up event.");
             _poppedUpEvent = true;
-
-            var eventTracker = new SimGameEventTracker();
-            eventTracker.Init(new[] { EventScope.Company }, 0, 0, SimGameEventDef.SimEventType.NORMAL, simGame);
-            simGame.InterruptQueue.QueueEventPopup(_setTimelineEvent, EventScope.Company, eventTracker);
+            Util.FireEvent(simGame, _setTimelineEvent);
         }
 
 

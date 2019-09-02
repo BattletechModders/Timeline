@@ -1,7 +1,10 @@
-﻿using Harmony;
+﻿using System.Collections.Generic;
+using Harmony;
 using HBS.Logging;
 using System.Reflection;
+using BattleTech;
 using Timeline.Features;
+using Timeline.Resources;
 
 namespace Timeline
 {
@@ -22,6 +25,15 @@ namespace Timeline
             ModDirectory = modDir;
 
             CurrentDate.SetupSetTimelineEvent();
+        }
+
+        public static void FinishedLoading(Dictionary<string, Dictionary<string, VersionManifestEntry>> customResources)
+        {
+            if (customResources.ContainsKey(nameof(ForcedTimelineEvent)))
+            {
+                foreach (var entry in customResources[nameof(ForcedTimelineEvent)].Values)
+                    ForcedEvents.ForcedTimelineEvents.Add(SerializeUtil.FromPath<ForcedTimelineEvent>(entry.FilePath));
+            }
         }
     }
 }

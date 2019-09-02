@@ -6,6 +6,15 @@ namespace Timeline
 {
     internal static class Util
     {
+        public static void FireEvent(SimGameState simGame, SimGameEventDef eventDef)
+        {
+            Main.HBSLog.Log($"Firing event {eventDef.Description.Id}");
+
+            var eventTracker = new SimGameEventTracker();
+            eventTracker.Init(new[] { EventScope.Company }, 0, 0, SimGameEventDef.SimEventType.NORMAL, simGame);
+            simGame.InterruptQueue.QueueEventPopup(eventDef, EventScope.Company, eventTracker);
+        }
+
         public static string GetStartingDateTag(SimGameState simGame)
         {
             return simGame.CompanyTags.ToList().Find(x => x.Contains("start_timeline"));

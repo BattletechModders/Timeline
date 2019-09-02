@@ -42,7 +42,7 @@ namespace Timeline.Features
             simGame.SetTimeMoving(false);
         }
 
-        public static void OnDayAdvance()
+        public static void OnDayPassed()
         {
             if (_advancingTo == null)
                 return;

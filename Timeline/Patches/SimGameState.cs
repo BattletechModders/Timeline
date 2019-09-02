@@ -11,9 +11,10 @@ namespace Timeline.Patches
     [HarmonyPatch(typeof(SimGameState), "OnDayPassed")]
     public static class SimGameState_OnDayPassed_Patch
     {
-        public static void Postfix()
+        public static void Postfix(SimGameState __instance, int timeLapse)
         {
-            AdvanceToTask.OnDayAdvance();
+            AdvanceToTask.OnDayPassed();
+            ForcedEvents.OnDayPassed(__instance, timeLapse);
         }
     }
 

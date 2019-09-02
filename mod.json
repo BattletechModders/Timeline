@@ -8,6 +8,7 @@
     "Website": "www.github.com/BattletechModders/Timeline",
 
     "ConflictsWith": [ "AddYearToTimeline" ],
+    "CustomResourceTypes": [ "ForcedTimelineEvent" ],
 
     "Settings": {
         "DateFormatString": "{0:yyyy MMMM d}{1}",
