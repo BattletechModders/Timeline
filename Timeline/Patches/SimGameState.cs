@@ -48,4 +48,16 @@ namespace Timeline.Patches
             return false;
         }
     }
+
+    [HarmonyPatch(typeof(SimGameState), "RequestDataManagerResources")]
+    public static class SimGameState_RequestDataManagerResources_Patch
+    {
+        public static void Postfix(SimGameState __instance)
+        {
+            // load all vehicleDefs at simGame launch
+            var loadRequest = __instance.DataManager.CreateLoadRequest(null, true);
+            loadRequest.AddAllOfTypeBlindLoadRequest(BattleTechResourceType.VehicleDef, true);
+            loadRequest.ProcessRequests();
+        }
+    }
 }
