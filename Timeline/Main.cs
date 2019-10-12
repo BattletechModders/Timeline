@@ -1,8 +1,10 @@
 ﻿using System.Collections.Generic;
+using System.IO;
 using Harmony;
 using HBS.Logging;
 using System.Reflection;
 using BattleTech;
+using HBS.Util;
 using Timeline.Features;
 using Timeline.Resources;
 
@@ -32,7 +34,20 @@ namespace Timeline
             if (customResources.ContainsKey(nameof(ForcedTimelineEvent)))
             {
                 foreach (var entry in customResources[nameof(ForcedTimelineEvent)].Values)
+                {
                     ForcedEvents.ForcedTimelineEvents.Add(SerializeUtil.FromPath<ForcedTimelineEvent>(entry.FilePath));
+                }
+            }
+
+            if (customResources.ContainsKey(nameof(ItemCollectionRequirement)))
+            {
+                foreach (var entry in customResources[nameof(ItemCollectionRequirement)].Values)
+                {
+                    // have to use fastJSON because requirementDefs are very picky apparently
+                    var itemReq = new ItemCollectionRequirement();
+                    JSONSerializationUtility.FromJSON(itemReq, File.ReadAllText(entry.FilePath));
+                    ItemCollectionRequirements.ShopItemRequirements.Add(itemReq.ItemID, itemReq.RequirementDef);
+                }
             }
         }
     }
