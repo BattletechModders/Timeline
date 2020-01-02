@@ -89,10 +89,10 @@ namespace Timeline.Features
                 // by the Timeline event selection
                 // eg in testing it takes 55-60s for proper effect
                 // in use it's more like 75s
-                const float secondsPerCharacter = 0.175f;
+                const float timeFactor = 0.175f;
                 // approximate time to read instead of measuring distance
                 // text fades after this time
-                ReadingTime = text.Length * secondsPerCharacter;
+                ReadingTime = text.Length * timeFactor;
 
                 // found this .depth and .layer stuff online somewhere, maybe extreme values
                 ScrollerCamera = new GameObject("Scroller Camera")
