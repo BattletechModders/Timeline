@@ -24,7 +24,7 @@ namespace Timeline.Features
         public class MoveUp : MonoBehaviour
         {
             private TextMeshPro textMeshPro;
-            private const float speed = 0.015f;
+            private float speed = Main.Settings.ScrollerSpeed;
 
             void Start()
             {
