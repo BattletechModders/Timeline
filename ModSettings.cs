@@ -9,6 +9,7 @@ namespace Timeline
         public float AdvanceToTaskTime = 0.25f;
         public bool UseScroller = false;
         public float ScrollerSpeed = 0.015f;
+        public float ReadTimeFactor = 0.175f;
 
         public static ModSettings ReadSettings(string json)
         {

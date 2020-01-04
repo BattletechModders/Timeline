@@ -13,6 +13,8 @@
     "Settings": {
         "DateFormatString": "{0:yyyy MMMM d}{1}",
         "AdvanceToTaskTime": 0.25,
-        "UseScroller": false
+        "UseScroller": false,
+        "ScrollerSpeed": 0.015,
+        "ReadTimeFactor": 0.175
     }
 }
