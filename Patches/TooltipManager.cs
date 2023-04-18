@@ -1,6 +1,6 @@
 ﻿using BattleTech;
 using BattleTech.UI.Tooltips;
-using Harmony;
+
 
 // ReSharper disable UnusedMember.Global
 // ReSharper disable InconsistentNaming

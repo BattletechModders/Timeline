@@ -1,5 +1,5 @@
 ﻿using BattleTech.UI;
-using Harmony;
+
 using Timeline.Features;
 using UnityEngine;
 
@@ -11,15 +11,17 @@ namespace Timeline.Patches
     [HarmonyPatch(typeof(TaskTimelineWidget), "OnTaskDetailsClicked")]
     public static class TaskTimelineWidget_OnTaskDetailsClicked_Patch
     {
-        public static bool Prefix(TaskManagementElement element)
+        public static void Prefix(ref bool __runOriginal, TaskManagementElement element)
         {
+            if (!__runOriginal) return;
             if (Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift))
             {
                 AdvanceToTask.StartAdvancing(element.Entry);
-                return false;
+                __runOriginal = false;
+                return;
             }
-
-            return true;
+            __runOriginal = true;
+            return;
         }
     }
 }

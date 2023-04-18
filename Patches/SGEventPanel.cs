@@ -1,7 +1,6 @@
 ﻿using BattleTech.UI;
-using Harmony;
+
 using Timeline.Features;
-using TMPro;
 
 // ReSharper disable UnusedMember.Global
 // ReSharper disable InconsistentNaming
@@ -13,7 +12,8 @@ namespace Timeline.Patches
     {
         public static void Postfix(SGEventPanel __instance)
         {
-            var eventTime = Traverse.Create(__instance).Field("eventTime").GetValue<TextMeshProUGUI>();
+            //var eventTime = Traverse.Create(__instance).Field("eventTime").GetValue<TextMeshProUGUI>();
+            var eventTime = __instance.eventTime;
             eventTime.text = CurrentDate.GetTimelineDateString(__instance.Sim);
         }
     }

@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using BattleTech;
-using Harmony;
+
 
 namespace Timeline.Features
 {
@@ -19,10 +19,13 @@ namespace Timeline.Features
 
             var filtered = new ItemCollectionDef();
 
-            var fTraverse = Traverse.Create(filtered);
-            fTraverse.Field("ID").SetValue(itemCollectionDef.ID);
-            fTraverse.Field("CollectionType").SetValue(itemCollectionDef.CollectionType);
-            fTraverse.Field("Description").SetValue(itemCollectionDef.Description);
+            //var fTraverse = Traverse.Create(filtered);
+            //fTraverse.Field("ID").SetValue(itemCollectionDef.ID);
+            //fTraverse.Field("CollectionType").SetValue(itemCollectionDef.CollectionType);
+            //fTraverse.Field("Description").SetValue(itemCollectionDef.Description);
+            filtered.ID = itemCollectionDef.ID;
+            filtered.CollectionType = itemCollectionDef.CollectionType;
+            filtered.Description = itemCollectionDef.Description;
 
             filtered.Entries.AddRange(itemCollectionDef.Entries.Where(e =>
                 !ShopItemRequirements.ContainsKey(e.ID)|| simGame.MeetsRequirements(ShopItemRequirements[e.ID])));

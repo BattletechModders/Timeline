@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using System.IO;
-using Harmony;
 using HBS.Logging;
 using System.Reflection;
 using BattleTech;
@@ -22,9 +21,10 @@ namespace Timeline
             HBSLog = Logger.GetLogger("Timeline");
             Settings = ModSettings.ReadSettings(modSettings);
             ModDirectory = modDir;
-            var harmony = HarmonyInstance.Create("io.github.mpstark.Timeline");
-            harmony.PatchAll(Assembly.GetExecutingAssembly());
-
+            var HarmonyPackage = "io.github.mpstark.Timeline";
+            //var harmony = HarmonyInstance.Create("io.github.mpstark.Timeline");
+            //harmony.PatchAll(Assembly.GetExecutingAssembly());
+            Harmony.CreateAndPatchAll(Assembly.GetExecutingAssembly(), HarmonyPackage);
             CurrentDate.SetupSetTimelineEvent();
         }
 

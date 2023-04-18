@@ -1,8 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using BattleTech;
-using BattleTech.UI;
-using Harmony;
+
 
 namespace Timeline.Features
 {
@@ -48,11 +46,10 @@ namespace Timeline.Features
                 return;
 
             var simGame = UnityGameInstance.BattleTechGame.Simulation;
-            var timelineWidget = Traverse.Create(simGame.RoomManager).Field("timelineWidget")
-                .GetValue<TaskTimelineWidget>();
-            var activeItems = Traverse.Create(timelineWidget).Field("ActiveItems")
-                .GetValue<Dictionary<WorkOrderEntry, TaskManagementElement>>();
-
+            //var timelineWidget = Traverse.Create(simGame.RoomManager).Field("timelineWidget").GetValue<TaskTimelineWidget>();
+            var timelineWidget = simGame.RoomManager.timelineWidget;
+            //var activeItems = Traverse.Create(timelineWidget).Field("ActiveItems").GetValue<Dictionary<WorkOrderEntry, TaskManagementElement>>();
+            var activeItems = timelineWidget.ActiveItems;
             // if timeline doesn't contain advancingTo or advancingTo is over
             if (!activeItems.ContainsKey(_advancingTo) || _advancingTo.IsCostPaid())
                 StopAdvancing();

@@ -1,5 +1,5 @@
 ﻿using BattleTech;
-using Harmony;
+
 using Timeline.Features;
 
 // ReSharper disable UnusedMember.Global

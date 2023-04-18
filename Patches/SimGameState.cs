@@ -1,5 +1,5 @@
 ﻿using BattleTech;
-using Harmony;
+
 using HBS.Collections;
 using Timeline.Features;
 
@@ -39,13 +39,18 @@ namespace Timeline.Patches
     [HarmonyPatch(typeof(SimGameState), "MeetsTagRequirements")]
     public static class SimGameState_MeetsTagRequirements_Patch
     {
-        public static bool Prefix(ref TagSet reqTags, ref TagSet exTags, ref bool __result)
+        public static void Prefix(ref bool __runOriginal, ref TagSet reqTags, ref TagSet exTags, ref bool __result)
         {
+            if (!__runOriginal) return;
             if (RequirementDefDates.MeetsDateRequirements(ref reqTags, ref exTags))
-                return true;
+            {
+                __runOriginal = true;
+                return;
+            }
 
             __result = false;
-            return false;
+            __runOriginal = false;
+            return;
         }
     }
 

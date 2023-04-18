@@ -1,8 +1,6 @@
-﻿using BattleTech;
-using BattleTech.UI;
-using Harmony;
+﻿using BattleTech.UI;
+
 using Timeline.Features;
-using TMPro;
 
 // ReSharper disable UnusedMember.Global
 // ReSharper disable InconsistentNaming
@@ -14,8 +12,10 @@ namespace Timeline.Patches
     {
         public static void Postfix(SGTimePlayPause __instance)
         {
-            var timePassedText = Traverse.Create(__instance).Field("timePassedText").GetValue<TextMeshProUGUI>();
-            var simGame = Traverse.Create(__instance).Field("simState").GetValue<SimGameState>();
+            //var timePassedText = Traverse.Create(__instance).Field("timePassedText").GetValue<TextMeshProUGUI>();
+            var timePassedText = __instance.timePassedText;
+            //var simGame = Traverse.Create(__instance).Field("simState").GetValue<SimGameState>();
+            var simGame = __instance.simState;
             timePassedText.text = CurrentDate.GetTimelineDateString(simGame);
         }
     }

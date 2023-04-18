@@ -1,12 +1,8 @@
 using System;
 using System.Collections;
-using System.Globalization;
 using System.Linq;
-using BattleTech.UI;
-using Harmony;
 using TMPro;
 using UnityEngine;
-using UnityEngine.Experimental.PlayerLoop;
 
 // ReSharper disable InconsistentNaming
 // ReSharper disable ClassNeverInstantiated.Global
