@@ -19,12 +19,11 @@ namespace Timeline
         // ENTRY POINT
         public static void Init(string modDir, string modSettings)
         {
-            var harmony = HarmonyInstance.Create("io.github.mpstark.Timeline");
-            harmony.PatchAll(Assembly.GetExecutingAssembly());
-
             HBSLog = Logger.GetLogger("Timeline");
             Settings = ModSettings.ReadSettings(modSettings);
             ModDirectory = modDir;
+            var harmony = HarmonyInstance.Create("io.github.mpstark.Timeline");
+            harmony.PatchAll(Assembly.GetExecutingAssembly());
 
             CurrentDate.SetupSetTimelineEvent();
         }
