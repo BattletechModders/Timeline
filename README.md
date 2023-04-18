@@ -1,6 +1,8 @@
 # Timeline
 BattleTech mod that helps ground the campaign into the timeline of the universe.
 
+**v1.4.0 and higher requires modtek v3 or higher**
+
 * Pops up a timeline selection event or uses the default starting data (set in SimGameConstants)
 * Allows for limiting mechs to an appearance date by using `MinAppearanceDate` in the MechDef
   * `"MinAppearanceDate" : "3025-06-28T00:00:00Z",` is used by the Hatchetman in vanilla 1.4
