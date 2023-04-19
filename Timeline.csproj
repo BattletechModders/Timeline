@@ -26,7 +26,7 @@
     <DisableImplicitFrameworkReferences>true</DisableImplicitFrameworkReferences>
     <DebugType>none</DebugType>
     <DebugSymbols>false</DebugSymbols>
-    <Nullable>enable</Nullable>
+    
   </PropertyGroup>
   <Target Name="CopyFilesToGame" AfterTargets="CopyFilesToOutputDirectory">
     <Copy SourceFiles="$(TargetPath)" DestinationFolder="$(TimelineModPath)" />
